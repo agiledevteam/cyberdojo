@@ -49,7 +49,6 @@ def prune_stats
     manifest_filename = "#{kata_dir}/manifest.rb"
     if File.exists? manifest_filename
       tally,count = traffic_light_count(kata_dir)
-      
       begin
         manifest = eval IO.popen("cat #{manifest_filename}").read      
         created = Time.mktime(*manifest[:created])
