@@ -42,10 +42,8 @@ check for conflicts?
 
 MINOR
 -----
-option to download the dojo as a zip file
-  def download
-    send_file '/home/railsway/downloads/huge.zip', :type=>"application/zip" 
-  end
+it might be better if the dialog box showing a players animal
+  appeared after the edit-test page appeared rather than before.
 -----
 in the diff view, long lines get truncated rather than bringing up
   a scroll bar
