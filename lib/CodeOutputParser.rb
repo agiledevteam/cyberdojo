@@ -12,10 +12,11 @@ module CodeOutputParser
   
   def self.parse(unit_test_framework, output)
     inc = { }
-    if Regexp.new("Terminated by the cyber-dojo server after").match(output)
+    safe_output = output.encode('utf-8', 'binary', :invalid => :replace, :undef => :replace)
+    if Regexp.new("Terminated by the cyber-dojo server after").match(safe_output)
       inc[:colour] = :amber
     else
-      inc[:colour] = eval "parse_#{unit_test_framework}(output)"
+      inc[:colour] = eval "parse_#{unit_test_framework}(safe_output)"
     end
     inc
   end
