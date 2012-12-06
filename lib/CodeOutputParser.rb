@@ -12,10 +12,14 @@ module CodeOutputParser
   
   def self.parse(unit_test_framework, output)
     inc = { }
-    if Regexp.new("Terminated by the cyber-dojo server after").match(output)
+    begin
+      if Regexp.new("Terminated by the cyber-dojo server after").match(output)
+         inc[:colour] = :amber
+      else
+        inc[:colour] = eval "parse_#{unit_test_framework}(output)"
+      end
+    rescue
       inc[:colour] = :amber
-    else
-      inc[:colour] = eval "parse_#{unit_test_framework}(output)"
     end
     inc
   end
